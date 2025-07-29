@@ -1,11 +1,13 @@
 import boto3
 import csv
 import json
+import os
 
 from src.utils import People, Teams
 
 
 def lambda_handler(event, context):
+    STORAGE_BUCKET_NAME = os.environ['STORAGE_BUCKET_NAME']
     s3_bucket_name = event['Records'][0]["s3"]["bucket"]["name"]
     s3_object_name = event['Records'][0]["s3"]["object"]["key"]
     file_title = s3_object_name.replace(".txt", ".json")
@@ -25,5 +27,5 @@ def lambda_handler(event, context):
     }
 
     s3.put_object(Body=json.dumps(to_store),
-                  Bucket="storage_bucket", Key=file_title)
+                  Bucket=STORAGE_BUCKET_NAME, Key=file_title)
     pass
