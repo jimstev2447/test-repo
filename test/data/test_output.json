@@ -1,0 +1,40 @@
+{
+  "teams": [
+    {
+      "name": "engineering",
+      "members": ["alice", "diana", "jess"],
+      "mean_sugar_intake": 44.0,
+      "total_sugar": 132
+    },
+    {
+      "name": "data",
+      "members": ["bob", "eli", "ian"],
+      "mean_sugar_intake": 72.33333333333333,
+      "total_sugar": 217
+    },
+    {
+      "name": "marketing",
+      "members": ["charlie", "george"],
+      "mean_sugar_intake": 80.0,
+      "total_sugar": 160
+    },
+    {
+      "name": "product",
+      "members": ["farah", "hana"],
+      "mean_sugar_intake": 55.5,
+      "total_sugar": 111
+    }
+  ],
+  "people": [
+    { "name": "alice", "fav_snack": "chocolate" },
+    { "name": "bob", "fav_snack": "chips" },
+    { "name": "charlie", "fav_snack": "fruit" },
+    { "name": "diana", "fav_snack": "popcorn" },
+    { "name": "eli", "fav_snack": "chocolate" },
+    { "name": "farah", "fav_snack": "fruit" },
+    { "name": "george", "fav_snack": "cookies" },
+    { "name": "hana", "fav_snack": "chocolate" },
+    { "name": "ian", "fav_snack": "chips" },
+    { "name": "jess", "fav_snack": "cookies" }
+  ]
+}

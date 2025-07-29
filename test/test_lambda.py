@@ -4,6 +4,7 @@ import os
 import boto3
 from moto import mock_aws
 
+import test_constants
 from src.etl import lambda_handler
 
 # TODO: valid event => successful file access => successful insert
@@ -32,22 +33,45 @@ def aws_credentials():
 @pytest.fixture(scope="function")
 def s3(aws_credentials):
     with mock_aws():
-        yield boto3.client("s3", region_name="eu-west-1")
+        yield boto3.client("s3", region_name="eu-west-2")
 
 
 @pytest.fixture
 def bucket(s3):
     s3.create_bucket(
-        Bucket="test_bucket",
+        Bucket=test_constants.TEST_BUCKET_NAME,
         CreateBucketConfiguration={"LocationConstraint": "eu-west-2"},
     )
     with open("test/data/test_file.txt") as f:
         text_to_write = f.read()
         s3.put_object(
-            Body=text_to_write, Bucket="test_bucket", Key="sample/test_file.txt"
+            Body=text_to_write, Bucket=test_constants.TEST_BUCKET_NAME, Key=test_constants.TEST_OBJECT_KEY
         )
 
 
-def test_lambda_handler_logs_correct_text(valid_event, s3, bucket):
-    lambda_handler(valid_event)
-    assert False
+@pytest.fixture
+def saved_bucket(s3):
+    storage_bucket = s3.create_bucket(
+        Bucket=test_constants.TEST_STORAGE_BUCKET_NAME,
+        CreateBucketConfiguration={"LocationConstraint": "eu-west-2"},
+    )
+    return storage_bucket
+
+
+def test_lambda_handler_saves_to_bucket(valid_event, s3, bucket, saved_bucket):
+    context = {}
+    lambda_handler(valid_event, context=context)
+    response = s3.get_object(Bucket=test_constants.TEST_STORAGE_BUCKET_NAME,
+                             Key=test_constants.TEST_STORAGE_BUCKET_OBJECT_TARGET)
+    assert response['ResponseMetadata']['HTTPStatusCode'] == 200
+
+
+def test_lambda_stores_correct_data(valid_event, s3, bucket, saved_bucket):
+    context = {}
+    lambda_handler(valid_event, context=context)
+    response = s3.get_object(Bucket=test_constants.TEST_STORAGE_BUCKET_NAME,
+                             Key=test_constants.TEST_STORAGE_BUCKET_OBJECT_TARGET)
+    data = json.loads(response['Body'].read().decode('utf-8'))
+    with open(file="./test/data/test_output.json")as file:
+        expected_data = json.loads(file.read())
+        assert expected_data == data
