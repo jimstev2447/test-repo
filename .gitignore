@@ -1,2 +1,7 @@
 */**/__pycache__
 */.pytest_cache
+
+function.zip
+
+*/.terraform/*
+*/.terraform.lock.hcl
