@@ -1,4 +1,4 @@
-from src.utils import Teams, People
+from src.etl import Teams, People
 
 
 class Test_People():
