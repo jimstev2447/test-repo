@@ -1,0 +1,15 @@
+{
+  "teams": [
+    {
+      "name": "engineering",
+      "members": ["alice", "diana", "jess"],
+      "mean_sugar_intake": 3
+    },
+    {
+      "name": "engineering",
+      "members": ["alice", "diana", "jess"],
+      "mean_sugar_intake": 3
+    }
+  ],
+  "people": [{ "name": "alice", "favourite_snack": "chocolate" }]
+}

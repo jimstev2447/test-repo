@@ -1,0 +1,11 @@
+name,team,favourite_snack,times_per_week,sugar_grams
+Alice,Engineering,Chocolate,5,20
+Bob,Data,Chips,3,15
+Charlie,Marketing,Fruit,7,10
+Diana,Engineering,Popcorn,2,8
+Eli,Data,Chocolate,4,22
+Farah,Product,Fruit,6,9
+George,Marketing,Cookies,5,18
+Hana,Product,Chocolate,3,19
+Ian,Data,Chips,6,14
+Jess,Engineering,Cookies,1,16
