@@ -7,7 +7,6 @@ from moto import mock_aws
 import test_constants
 from src.etl import lambda_handler
 
-# TODO: valid event => successful file access => successful insert
 # TODO: invalid event
 #  TODO: unsuccessful file access
 #  TODO: unsuccessful insert
