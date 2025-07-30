@@ -20,7 +20,7 @@ jobs:
       - name: export pythonpath
         run: export PYTHONPATH=$(pwd)
       - name: run-tests
-        run: pip test
+        run: pytest ./test/test_helpers.py
   deploy-to-aws:
     name: deploy
     runs-on: ubuntu-latest
