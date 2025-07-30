@@ -37,6 +37,12 @@ jobs:
           aws-region: ${{secrets.AWS_REGION}}
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
-      - run: terraform init
-      - run: terraform plan
-      - run: terraform apply -auto-approve
+      - name: Terraform INIT
+        working-directory: terraform
+        run: terraform init
+      - name: Terraform PLAN
+        working-directory: terraform
+        run: terraform plan
+      - name: Terraform APPLY
+        working-directory: terraform
+        run: terraform apply --auto-approve
