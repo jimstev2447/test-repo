@@ -27,7 +27,6 @@ jobs:
     needs: run-unit-tests
     steps:
       - uses: hashicorp/setup-terraform@v3
-      - run: cd terraform
       - run: terraform init
       - run: terraform plan
       - run: terraform apply -auto-approve
